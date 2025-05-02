@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test checkk
-        run: "testing just worked fine"
+        run: echo "testing just worked fine"
