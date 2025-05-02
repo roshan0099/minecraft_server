@@ -1,0 +1,12 @@
+name: test deploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test checkk
+        run: "testing just worked fine"
