@@ -7,6 +7,29 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
+
+    env:
+      VM_NAME: ${{secrets.VM_IP}}
+      ZONE: ${{secrets.ZONE}}
+      PROJECT_NAME: ${{secrets.PROJECT_NAME}}
+
     steps:
       - name: Test checkk
         run: echo "testing just worked fine"
+  
+      - name: Installing the google cli
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: latest
+        
+      - name: "Auth with google"
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.SERVICE_JSON }}
+      
+      - name: Creating a file in the vm
+        run: |
+          gcloud compute ssh "$VM_NAME"  \
+          --zone "$ZONE" \
+          --project "$PROJECT_NAME" \
+          --command "touch /home/roshan/testing.txt"
