@@ -32,4 +32,4 @@ jobs:
           gcloud compute ssh "$VM_NAME"  \
           --zone "$ZONE" \
           --project "$PROJECT_NAME" \
-          --command "touch /home/roshan/testing.txt"
+          --command "sudo touch /home/roshan/testing.txt"
